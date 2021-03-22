@@ -7,6 +7,7 @@ The grid will look like this:
 '''
 N = 3
 grid = [['-']*7 for _ in range(7)]
+marks = ['X', 'O']
 #This function prints the grid of Tic-Tac-Toe as the game progresses
 def print_grid():
     print("Player 1: X  vs  Player 2: O")
@@ -56,24 +57,24 @@ def check_tie(mark):
     row, column, diagonal, reverse = 0,0,0,0
     for i in range(N):
         for j in range(N):
-            if grid[i][j] != mark and not check_empty(i,j):  # check row
+            if grid[i][j] == mark :  # check row
                 row += 1
                 break
     for i in range(N):
         for j in range(N):
-            if grid[j][i] != mark and not check_empty(i, j) : #check column
+            if grid[j][i] == mark : #check column
                 column += 1
                 break
     for i in range(N):
         for j in range(N):
             if i == j:            #check diagonal
-                if grid[i][j] != mark and not check_empty(i, j):
+                if grid[i][j] == mark:
                     diagonal = 1
                     break;
     for i in range(N):
         for j in range(N):
             if i + j == 2:        #check reverse diagonal
-                if grid[i][j] != mark and not check_empty(i, j):
+                if grid[i][j] == mark :
                     reverse = 1
                     break
     if row == N and column == N and diagonal == 1 and reverse == 1:
@@ -125,7 +126,7 @@ def play_game():
             print('Congrats, Player %s is won!' % mark)
             break
         #Check if the state of the grid has a tie state
-        if check_tie(mark):
+        if check_tie(marks[player]) and check_tie(marks[1-player]):
             #Prints the grid
             print_grid()
             print("Woah! That's a tie!")
