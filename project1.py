@@ -68,13 +68,13 @@ def check_tie(mark):
         for j in range(N):
             if i == j:            #check diagonal
                 if grid[i][j] != mark and not check_empty(i, j):
-                    diagonal += 1
+                    diagonal = 1
                     break;
     for i in range(N):
         for j in range(N):
             if i + j == 2:        #check reverse diagonal
                 if grid[i][j] != mark and not check_empty(i, j):
-                    reverse += 1
+                    reverse = 1
                     break
     if row == N and column == N and diagonal == 1 and reverse == 1:
         return True
